@@ -1,6 +1,6 @@
 # Developer Productivity Tool
 
-Daily tasks I need in a SpringBoot application. 
+Daily tasks I need , available in one Spring Shell application. 
 
 ## Features so far
 1. Create a JWT.

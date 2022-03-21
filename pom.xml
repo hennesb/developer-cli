@@ -10,6 +10,7 @@
 		<jaspyt.version>1.9.3</jaspyt.version>
 		<surefire.version>2.22.2</surefire.version>
 		<lombok.version>1.18.22</lombok.version>
+		<commons.codec.version>1.15</commons.codec.version>
 	</properties>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -57,7 +58,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>${lombok.version}</version>
-			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${commons.codec.version}</version>
 		</dependency>
 
 

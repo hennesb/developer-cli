@@ -1,4 +1,4 @@
-package ie.developer.cli;
+package ie.developer.cli.credential.management;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

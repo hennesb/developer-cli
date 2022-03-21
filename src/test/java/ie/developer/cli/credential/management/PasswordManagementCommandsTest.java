@@ -1,5 +1,6 @@
-package ie.developer.cli;
+package ie.developer.cli.credential.management;
 
+import ie.developer.cli.credential.management.PasswordManagementCommands;
 import org.jasypt.exceptions.EncryptionOperationNotPossibleException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

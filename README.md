@@ -1,7 +1,6 @@
 # Developer Productivity Tool
 
-Created to improve the developer experience. Why write docs when you can build a tool
-that documents and can run the commands you need.
+Daily tasks I need in a SpringBoot application. 
 
 ## Features so far
 1. Create a JWT.

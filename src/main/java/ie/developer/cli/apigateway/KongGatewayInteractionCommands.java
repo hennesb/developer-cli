@@ -1,4 +1,4 @@
-package ie.developer.cli;
+package ie.developer.cli.apigateway;
 
 
 import com.auth0.jwt.JWT;
@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 
 
 @ShellComponent
-    public class KongCommands {
+    public class KongGatewayInteractionCommands {
 
 
         @ShellMethod(value="Generate a JWT token.", key="jwt-gen", prefix="-")

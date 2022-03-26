@@ -1,8 +1,11 @@
 package ie.developer.cli.credential.management;
 
-import ie.developer.cli.credential.management.PasswordManagementCommands;
+import ie.developer.cli.credential.management.command.PasswordManagementCommands;
 import org.jasypt.exceptions.EncryptionOperationNotPossibleException;
 import org.junit.jupiter.api.Test;
+
+import java.util.function.Function;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -49,7 +52,19 @@ public class PasswordManagementCommandsTest {
         Exception exception = assertThrows(EncryptionOperationNotPossibleException.class, () -> {
             command.decrypt(encrypted,WRONG_PASSWORD );
         });
+    }
 
+    private static String getenv(String variable) {
+        return ((Function<String, String>) System::getenv).apply(variable);
+    }
+
+    @Test
+    public void when_system_property(){
+        Function<String,String> systemProperty = s -> System.getenv(s);
+    }
+
+    private String apply(Function<String,String> func, String key){
+        return func.apply(key);
     }
 
 

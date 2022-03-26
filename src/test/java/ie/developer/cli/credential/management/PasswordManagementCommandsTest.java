@@ -54,6 +54,7 @@ public class PasswordManagementCommandsTest {
         });
     }
 
+
     private static String getenv(String variable) {
         return ((Function<String, String>) System::getenv).apply(variable);
     }

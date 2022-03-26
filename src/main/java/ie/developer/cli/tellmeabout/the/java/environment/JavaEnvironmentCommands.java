@@ -1,6 +1,7 @@
 package ie.developer.cli.tellmeabout.the.java.environment;
 
 
+import lombok.extern.java.Log;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
@@ -22,6 +23,7 @@ import java.util.Properties;
 import java.util.function.Consumer;
 
 @ShellComponent
+@Log
 public class JavaEnvironmentCommands {
 
     private Consumer<X509Certificate> certConsumer = c -> {
@@ -59,7 +61,7 @@ public class JavaEnvironmentCommands {
     }
 
     private void printCertDetails(X509Certificate cert) throws CertificateEncodingException, CertificateNotYetValidException, CertificateExpiredException {
-        System.out.println(String.format("Subject: %s",cert.getSubjectDN().getName()));
+        System.out.println(String.format("Subject: %s ",cert.getSubjectDN().getName()));
         System.out.println(String.format("Issuer: %s",cert.getIssuerDN().getName()));
         System.out.println(String.format("Serial Number: %d",cert.getSerialNumber()));
         System.out.println(String.format("FingerPrint : %s" ,DigestUtils.sha1Hex(cert.getEncoded())));

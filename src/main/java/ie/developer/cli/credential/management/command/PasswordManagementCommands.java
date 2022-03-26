@@ -20,9 +20,6 @@ public class PasswordManagementCommands {
 
     @ShellMethod(value="Decrypt a value, encryted by the BasicTextEncryptor. ", key="decrypt", prefix="-")
     public String decrypt(@NotBlank @NotNull String value, @NotBlank @NotNull String usingPassword) {
-        BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
-        textEncryptor.setPasswordCharArray(usingPassword.toCharArray());
-        return textEncryptor.decrypt(value);
-
+        return PasswordCryptoFunctions.decrypt(SecureValueMessage.builder().password(usingPassword).value(value).build());
     }
 }

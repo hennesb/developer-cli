@@ -1,7 +1,5 @@
 package ie.developer.cli.credential.management.command;
 
-import ie.developer.cli.credential.management.crypto.PasswordCryptoFunctions;
-import ie.developer.cli.credential.management.domain.SecureValueMessage;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 
@@ -15,7 +13,12 @@ public class Base64Commands {
 
 
     @ShellMethod(value="Base64 encode a value", key="base64-encode", prefix="-")
-    public String encrypt(@NotBlank @NotNull String value) {
+    public String encode(@NotBlank @NotNull String value) {
         return Base64.getEncoder().encodeToString(value.getBytes(StandardCharsets.UTF_8));
+    }
+
+    @ShellMethod(value="Decode a base64 value", key="base64-decode", prefix="-")
+    public String decode(@NotBlank @NotNull String value) {
+        return new String(Base64.getDecoder().decode(value));
     }
 }

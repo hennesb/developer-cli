@@ -61,49 +61,4 @@ public class ApiHttpClientTest {
         });
     }
 
-    private HttpResponse<String> mockResponse(){
-        return new HttpResponse<String>(){
-
-            @Override
-            public int statusCode() {
-                return 0;
-            }
-
-            @Override
-            public HttpRequest request() {
-                return null;
-            }
-
-            @Override
-            public Optional<HttpResponse<String>> previousResponse() {
-                return Optional.empty();
-            }
-
-            @Override
-            public HttpHeaders headers() {
-                return null;
-            }
-
-            @Override
-            public String body() {
-                return null;
-            }
-
-            @Override
-            public Optional<SSLSession> sslSession() {
-                return Optional.empty();
-            }
-
-            @Override
-            public URI uri() {
-                return null;
-            }
-
-            @Override
-            public HttpClient.Version version() {
-                return null;
-            }
-        };
-    }
-
 }

@@ -1,4 +1,4 @@
-package ie.developer.cli.network;
+package ie.developer.cli.apigateway;
 
 import javax.net.ssl.SSLSession;
 import java.net.URI;
@@ -18,13 +18,13 @@ public class MockStringHttpResponse {
        return mockResponse();
    }
 
-   
+
     private static HttpResponse<String> mockResponse(){
         return new HttpResponse<String>(){
 
             @Override
             public int statusCode() {
-                return 0;
+                return 200;
             }
 
             @Override

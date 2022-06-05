@@ -13,6 +13,7 @@ import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
 import javax.validation.constraints.NotBlank;
+import java.io.File;
 
 
 @ShellComponent
@@ -30,7 +31,7 @@ public class JWTCommands {
     @ShellMethod(value = "Verify JWT secret", key = "jwt-verify", prefix = "-")
     public String verifyJwtSecret(@NotBlank String token, @NotBlank String secret) {
         try {
-            Algorithm algorithm = Algorithm.HMAC256(secret); //use more secure key
+            Algorithm algorithm = Algorithm.HMAC256(secret);
             JWTVerifier verifier = JWT.require(algorithm)
                     .build();
             DecodedJWT jwt = verifier.verify(token);
@@ -38,7 +39,26 @@ public class JWTCommands {
         } catch (JWTVerificationException exception){
             return "Failure: Token could not be verified. Secret supplied was not used to sign this token";
         }
+    }
 
+    @ShellMethod(value = "Print JWT details", key = "jwt-print", prefix = "-")
+    public String printJwt(@NotBlank String token, @NotBlank String secret) {
+        StringBuffer buffer = new StringBuffer();
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            JWTVerifier verifier = JWT.require(algorithm).build();
+            DecodedJWT jwt = verifier.verify(token);
+            buffer.append("Secret: ").append(secret).append("\n")
+                    .append("Subject: ").append(jwt.getSubject()).append("\n")
+                    .append("nbf: ").append(jwt.getNotBefore()).append("\n")
+                    .append("Type: ").append(jwt.getType()).append("\n")
+                    .append("Issuer if in Header: ").append(jwt.getHeaderClaim("iss")).append("\n")
+                    .append("Issuer if in Body: ").append(jwt.getIssuer()).append("\n");
+            return buffer.toString();
+
+        } catch (JWTVerificationException exception){
+            return "Failure: Token could not be verified. Secret supplied was not used to sign this token. Cannot print details";
+        }
     }
 }
 

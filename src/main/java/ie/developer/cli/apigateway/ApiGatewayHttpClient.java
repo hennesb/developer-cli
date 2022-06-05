@@ -32,6 +32,7 @@ public class ApiGatewayHttpClient {
         try {
             return response.get().body();
         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
             throw new RuntimeException(e.getMessage());
         } catch (ExecutionException e) {
             throw new RuntimeException(e.getMessage());

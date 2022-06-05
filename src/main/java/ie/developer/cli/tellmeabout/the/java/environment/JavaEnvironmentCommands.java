@@ -2,6 +2,7 @@ package ie.developer.cli.tellmeabout.the.java.environment;
 
 
 import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
@@ -24,6 +25,7 @@ import java.util.function.Consumer;
 
 @ShellComponent
 @Log
+@Slf4j
 public class JavaEnvironmentCommands {
 
     private Consumer<X509Certificate> certConsumer = c -> {
@@ -35,7 +37,7 @@ public class JavaEnvironmentCommands {
     };
 
     @ShellMethod(value="Print java environment details", key="java-env", prefix="-")
-    public void javaEnv() throws NoSuchAlgorithmException, KeyStoreException {
+    public void javaEnv(){
         printJavaSystemPropertiesToSysOut();
 
     }
@@ -61,11 +63,11 @@ public class JavaEnvironmentCommands {
     }
 
     private void printCertDetails(X509Certificate cert) throws CertificateEncodingException, CertificateNotYetValidException, CertificateExpiredException {
-        System.out.println(String.format("Subject: %s ",cert.getSubjectDN().getName()));
-        System.out.println(String.format("Issuer: %s",cert.getIssuerDN().getName()));
-        System.out.println(String.format("Serial Number: %d",cert.getSerialNumber()));
-        System.out.println(String.format("FingerPrint : %s" ,DigestUtils.sha1Hex(cert.getEncoded())));
-        System.out.println("------------------------------------------------------");
+        log.info(String.format("Subject: %s ",cert.getSubjectDN().getName()));
+        log.info(String.format("Issuer: %s",cert.getIssuerDN().getName()));
+        log.info(String.format("Serial Number: %d",cert.getSerialNumber()));
+        log.info(String.format("FingerPrint : %s" ,DigestUtils.sha1Hex(cert.getEncoded())));
+        log.info("------------------------------------------------------");
     }
 
 

@@ -15,7 +15,7 @@ import java.net.Socket;
 @Log
 public class NetworkCommands {
 
-    private static final String CONNECTING_TO = "Connecting to host %s on port %d with timeout %d";
+
     private static final String CONNECT_SUCCESS = "Connection successful to host %s on port %d";
     private static final String CONNECT_FAILURE = "Connection failed to host %s on port %d";
 

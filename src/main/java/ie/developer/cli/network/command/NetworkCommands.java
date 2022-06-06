@@ -21,7 +21,7 @@ public class NetworkCommands {
 
 
     @ShellMethod(value="Create a Socket connection to host, test connectivity when telnet isn't available", key="tcp-connect", prefix="-")
-    public String tcpConnect(String host, int port, @Max(60000) @Min(1) @ShellOption(defaultValue="3000") int timeout) throws IOException {
+    public String tcpConnect(final String host, final int port, @Max(60000) @Min(1) @ShellOption(defaultValue="3000") final int timeout) throws IOException {
         try (Socket socket = new Socket()) {
             socket.connect(new InetSocketAddress(host, port), timeout);
             return String.format(CONNECT_SUCCESS, host, port);

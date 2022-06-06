@@ -22,12 +22,12 @@ public class PasswordManagementCommands {
     }
 
     @ShellMethod(value="Decrypt a value that was encryted using the BasicTextEncryptor. ", key="decrypt", prefix="-")
-    public String decrypt(@NotBlank @NotNull String value, @NotBlank @NotNull String usingPassword) {
+    public String decrypt(@NotBlank @NotNull final String value, @NotBlank @NotNull final String usingPassword) {
         return PasswordCryptoFunctions.decrypt(SecureValueMessage.builder().password(usingPassword).value(value).build());
     }
 
     @ShellMethod(value="Generate a random UUID and encrypt it using BasicTextEncryptor", key="create-uuid-encrypt-it", prefix="-")
-    public String uuidGenAndEncrypt(@NotBlank @NotNull String usingPassword) {
+    public String uuidGenAndEncrypt(@NotBlank @NotNull final String usingPassword) {
         String uuid = UUID.randomUUID().toString();
         String encryptedValue = PasswordCryptoFunctions.encrypt(SecureValueMessage.builder().password(usingPassword).value(uuid).build());
         return UUIDOutputMessage.builder().uuid(uuid).encryptedUUID(encryptedValue).build().toString();

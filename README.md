@@ -1,16 +1,32 @@
 # Developer Productivity Tool
 
-Daily tasks I need , available in one Spring Shell application. 
+The purpose of this tool is to reduce toil on certain developer tasks. 
 
-## Features so far
-1. Create a JWT.
-2. Encrypt a password using jasypt.
-3. Decrypt a password using jaspyt.
+## To compile and run unit tests
+```
+mvn clean package
+```
+
+## Run the cli
+```
+java -jar target/cli-0.0.1-SNAPSHOT.jar
+
+```
+
+## Features 
+To see the full list of commands available , when the cli starts run the help command
+
+```
+shell:>help
+
+```
+
+## Backlog
+1. Kong specific tasks , create a JWT for a specific consumer
+2. Kong OAuth token creation per consumer
+3. Kong health status ( without needing kong cli)
+4. Check developer account in requires AD Groupse
+5. Add cert to local cacerts truststore
 
 
-## Next Release
-4. JWT with a claim
-5. JWT signed by a known Kong consumer. Will also set the issuer using a Kong ISS field.
-6. Create an OAuth2 token for a known consumer
-7. Check a developer's AD account is set up with appropriate groups.
 

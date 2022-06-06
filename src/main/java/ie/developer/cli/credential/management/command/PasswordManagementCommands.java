@@ -2,7 +2,6 @@ package ie.developer.cli.credential.management.command;
 
 import ie.developer.cli.credential.management.domain.SecureValueMessage;
 import ie.developer.cli.credential.management.domain.UUIDOutputMessage;
-import org.jasypt.util.text.BasicTextEncryptor;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 
@@ -15,8 +14,9 @@ import java.util.UUID;
 @ShellComponent
 public class PasswordManagementCommands {
 
+
     @ShellMethod(value="Create an encrypted value using BasicTextEncryptor.", key="encrypt", prefix="-")
-    public String encrypt(@NotBlank @NotNull String value, @NotBlank @NotNull String usingPassword) {
+    public String encrypt(@NotBlank @NotNull final String value, @NotBlank @NotNull final String usingPassword) {
         return PasswordCryptoFunctions.encrypt(SecureValueMessage.builder().password(usingPassword).value(value).build());
 
     }
@@ -26,7 +26,7 @@ public class PasswordManagementCommands {
         return PasswordCryptoFunctions.decrypt(SecureValueMessage.builder().password(usingPassword).value(value).build());
     }
 
-    @ShellMethod(value="Generate a random UUID and encrypt it using BasicTextEncryptor", key="uuid-gen", prefix="-")
+    @ShellMethod(value="Generate a random UUID and encrypt it using BasicTextEncryptor", key="create-uuid-encrypt-it", prefix="-")
     public String uuidGenAndEncrypt(@NotBlank @NotNull String usingPassword) {
         String uuid = UUID.randomUUID().toString();
         String encryptedValue = PasswordCryptoFunctions.encrypt(SecureValueMessage.builder().password(usingPassword).value(uuid).build());

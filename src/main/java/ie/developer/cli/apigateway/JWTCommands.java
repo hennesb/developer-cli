@@ -20,15 +20,15 @@ import javax.validation.constraints.NotBlank;
 public class JWTCommands {
 
 
-    @ShellMethod(value = "Generate a signed HS256 type JWT token.", key = "jwt-gen", prefix = "-")
-    public String createJwt(@NotBlank String secret, @ShellOption(defaultValue = "") String issuer) {
+    @ShellMethod(value = "Generate a signed HS256 type JWT token.", key = "jwt-create", prefix = "-")
+    public String createJwt(@NotBlank final String secret, @ShellOption(defaultValue = "") final String issuer) {
         Algorithm algorithm = Algorithm.HMAC256(secret);
         return JWT.create().withIssuer(issuer)
                 .sign(algorithm);
     }
 
     @ShellMethod(value = "Verify a JWT was signed with a supplied secret", key = "jwt-verify", prefix = "-")
-    public String verifyJwtSecret(@NotBlank String token, @NotBlank String secret) {
+    public String verifyJwtSecret(@NotBlank final String token, @NotBlank final String secret) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             JWTVerifier verifier = JWT.require(algorithm)
@@ -41,7 +41,7 @@ public class JWTCommands {
     }
 
     @ShellMethod(value = "Print key JWT details , secret, issuer and subject", key = "jwt-print", prefix = "-")
-    public String printJwt(@NotBlank String token, @NotBlank String secret) {
+    public String printJwt(@NotBlank final String token, @NotBlank final String secret) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             JWTVerifier verifier = JWT.require(algorithm).build();
@@ -53,7 +53,7 @@ public class JWTCommands {
         }
     }
 
-    private String printableJwtDetails(DecodedJWT jwt, String secret) {
+    private String printableJwtDetails(final DecodedJWT jwt, final String secret) {
         StringBuffer buffer = new StringBuffer();
         buffer.append("Secret: ").append(secret).append("\n")
                 .append("Subject: ").append(jwt.getSubject()).append("\n")

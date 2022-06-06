@@ -16,7 +16,7 @@ public class UUIDOutputMessage {
 
     @Override
     public String toString(){
-        return String.format("UUID: %s Encrypted UUID: %s", uuid + System.lineSeparator(),encryptedUUID);
+        return String.format("UUID: %sEncrypted UUID: %s", uuid + System.lineSeparator(),encryptedUUID);
     }
 
 }

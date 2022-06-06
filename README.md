@@ -21,12 +21,16 @@ shell:>help
 
 ```
 
-## Backlog
-1. Kong specific tasks , create a JWT for a specific consumer
-2. Kong OAuth token creation per consumer
-3. Kong health status ( without needing kong cli)
-4. Check developer account in requires AD Groupse
-5. Add cert to local cacerts truststore
+## Training Tasks
+1. Commit a change with git
+2. Add a library dependency in the pom. Code formatting
+3. Upgrade a library, Apache http for example , run a `mvn clean package`
+4. Add a Shell method , documents and JUnit5 tests
+5. Customize the shell by changing font colours
+6. Write a test that mocks a network call
+7. Add a library to measure test code coverage 
+8. Integrate with Sonar on localhost
+9. Add mutation test library
 
 
 

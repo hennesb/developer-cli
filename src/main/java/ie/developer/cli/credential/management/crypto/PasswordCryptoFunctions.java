@@ -10,13 +10,13 @@ public class PasswordCryptoFunctions {
 
     }
 
-    public static String encrypt(SecureValueMessage message) {
+    public static String encrypt(final SecureValueMessage message) {
         BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
         textEncryptor.setPasswordCharArray(message.getPassword().toCharArray());
         return textEncryptor.encrypt(message.getValue());
     }
 
-    public static String decrypt(SecureValueMessage message) {
+    public static String decrypt(final SecureValueMessage message) {
         BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
         textEncryptor.setPasswordCharArray(message.getPassword().toCharArray());
         return textEncryptor.decrypt(message.getValue());

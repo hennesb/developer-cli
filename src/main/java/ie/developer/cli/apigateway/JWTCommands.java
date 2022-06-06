@@ -20,14 +20,14 @@ import javax.validation.constraints.NotBlank;
 public class JWTCommands {
 
 
-    @ShellMethod(value = "Generate a JWT token.", key = "jwt-gen", prefix = "-")
+    @ShellMethod(value = "Generate a signed HS256 type JWT token.", key = "jwt-gen", prefix = "-")
     public String createJwt(@NotBlank String secret, @ShellOption(defaultValue = "") String issuer) {
         Algorithm algorithm = Algorithm.HMAC256(secret);
         return JWT.create().withIssuer(issuer)
                 .sign(algorithm);
     }
 
-    @ShellMethod(value = "Verify JWT secret", key = "jwt-verify", prefix = "-")
+    @ShellMethod(value = "Verify a JWT was signed with a supplied secret", key = "jwt-verify", prefix = "-")
     public String verifyJwtSecret(@NotBlank String token, @NotBlank String secret) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
@@ -40,7 +40,7 @@ public class JWTCommands {
         }
     }
 
-    @ShellMethod(value = "Print JWT details", key = "jwt-print", prefix = "-")
+    @ShellMethod(value = "Print key JWT details , secret, issuer and subject", key = "jwt-print", prefix = "-")
     public String printJwt(@NotBlank String token, @NotBlank String secret) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);

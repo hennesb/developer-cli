@@ -20,7 +20,7 @@ public class NetworkCommands {
     private static final String CONNECT_FAILURE = "Connection failed to host %s on port %d";
 
 
-    @ShellMethod(value="Create a Socket connection to host", key="tcp-connect", prefix="-")
+    @ShellMethod(value="Create a Socket connection to host, test connectivity when telnet isn't available", key="tcp-connect", prefix="-")
     public String tcpConnect(String host, int port, @Max(60000) @Min(1) @ShellOption(defaultValue="3000") int timeout) throws IOException {
         try (Socket socket = new Socket()) {
             socket.connect(new InetSocketAddress(host, port), timeout);

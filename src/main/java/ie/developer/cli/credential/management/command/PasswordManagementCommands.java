@@ -15,18 +15,18 @@ import java.util.UUID;
 @ShellComponent
 public class PasswordManagementCommands {
 
-    @ShellMethod(value="Create an encrypted value to add to an application properties file.", key="encrypt", prefix="-")
+    @ShellMethod(value="Create an encrypted value using BasicTextEncryptor.", key="encrypt", prefix="-")
     public String encrypt(@NotBlank @NotNull String value, @NotBlank @NotNull String usingPassword) {
         return PasswordCryptoFunctions.encrypt(SecureValueMessage.builder().password(usingPassword).value(value).build());
 
     }
 
-    @ShellMethod(value="Decrypt a value, encryted by the BasicTextEncryptor. ", key="decrypt", prefix="-")
+    @ShellMethod(value="Decrypt a value that was encryted using the BasicTextEncryptor. ", key="decrypt", prefix="-")
     public String decrypt(@NotBlank @NotNull String value, @NotBlank @NotNull String usingPassword) {
         return PasswordCryptoFunctions.decrypt(SecureValueMessage.builder().password(usingPassword).value(value).build());
     }
 
-    @ShellMethod(value="Generate a random UUID and encrype it ", key="uuid-gen", prefix="-")
+    @ShellMethod(value="Generate a random UUID and encrypt it using BasicTextEncryptor", key="uuid-gen", prefix="-")
     public String uuidGenAndEncrypt(@NotBlank @NotNull String usingPassword) {
         String uuid = UUID.randomUUID().toString();
         String encryptedValue = PasswordCryptoFunctions.encrypt(SecureValueMessage.builder().password(usingPassword).value(uuid).build());

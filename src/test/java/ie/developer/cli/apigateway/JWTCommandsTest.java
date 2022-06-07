@@ -1,6 +1,10 @@
 package ie.developer.cli.apigateway;
 
 import org.junit.jupiter.api.Test;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JWTCommandsTest {
@@ -49,4 +53,24 @@ public class JWTCommandsTest {
         String isValid = command.verifyJwtSecret(token, JWT_SECRET+ "1");
         assertTrue(isValid.contains(FAILURE));
     }
+
+    @Test
+    public void when_jwt_is_signed_with_base64_(){
+        JWTCommands command = new JWTCommands();
+        String secret = Base64.getEncoder().encodeToString(JWT_SECRET.getBytes(StandardCharsets.UTF_8));
+        String token = command.createJWTWithB64Secret(secret,"MyIssuer");
+        assertEquals(3, token.split("\\.").length);
+    }
+
+    @Test
+    public void when_jwt_is_signed_with_correct_base64_encoded_secret_success_returned(){
+        JWTCommands command = new JWTCommands();
+        String secret = Base64.getEncoder().encodeToString(JWT_SECRET.getBytes(StandardCharsets.UTF_8));
+        String token = command.createJWTWithB64Secret(secret,"MyIssuer");
+        String isValid = command.verifyJwtWithBase64Secret(token, secret);
+        assertTrue(isValid.contains(SUCCESS));
+    }
+
+
+
 }

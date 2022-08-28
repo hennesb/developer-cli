@@ -28,7 +28,7 @@ public class JWTCommands {
                 .sign(algorithm);
     }
 
-    @ShellMethod(value = "Generate a signed HS256 type JWT token.", key = "jwt-create-with-b64-secret", prefix = "-")
+    @ShellMethod(value = "Generate a signed HS256 type JWT token with a base64 encoded secret", key = "jwt-create-with-b64-secret", prefix = "-")
     public String createJWTWithB64Secret(@NotBlank final String secret, @ShellOption(defaultValue = "") final String issuer) {
         Algorithm algorithm = Algorithm.HMAC256(Base64.getDecoder().decode(secret.getBytes(StandardCharsets.UTF_8)));
         return JWT.create().withIssuer(issuer)
@@ -48,7 +48,7 @@ public class JWTCommands {
         }
     }
 
-    @ShellMethod(value = "Verify a JWT was signed with a supplied base64 secret", key = "jwt-verify", prefix = "-")
+    @ShellMethod(value = "Verify a JWT was signed with a supplied secret encoded in base64", key = "jwt-verify", prefix = "-")
     public String verifyJwtSecret(@NotBlank final String token, @NotBlank final String secret) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);

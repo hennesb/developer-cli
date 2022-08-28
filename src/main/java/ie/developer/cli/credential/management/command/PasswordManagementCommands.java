@@ -32,4 +32,5 @@ public class PasswordManagementCommands {
         String encryptedValue = PasswordCryptoFunctions.encrypt(SecureValueMessage.builder().password(usingPassword).value(uuid).build());
         return UUIDOutputMessage.builder().uuid(uuid).encryptedUUID(encryptedValue).build().toString();
     }
+
 }

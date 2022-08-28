@@ -14,6 +14,10 @@
 		<power.mock.version>2.0.9</power.mock.version>
 		<mockito.version>4.4.0</mockito.version>
 		<apache.http.version>4.5.13</apache.http.version>
+		<common.codec.version>1.15</common.codec.version>
+		<junit.version>5.8.2</junit.version>
+		<aws.sdk.version>2.17.238</aws.sdk.version>
+		<guava.version>31.1-jre</guava.version>
 	</properties>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -31,13 +35,36 @@
 			<dependency>
 				<groupId>org.junit</groupId>
 				<artifactId>junit-bom</artifactId>
-				<version>5.8.2</version>
+				<version>${junit.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>software.amazon.awssdk</groupId>
+				<artifactId>bom</artifactId>
+				<version>${aws.sdk.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>aws-sdk-java</artifactId>
+			<version>${aws.sdk.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${common.codec.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>

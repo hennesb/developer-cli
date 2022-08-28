@@ -4,6 +4,8 @@ import ie.developer.cli.credential.management.command.PasswordManagementCommands
 import org.jasypt.exceptions.EncryptionOperationNotPossibleException;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -66,6 +68,31 @@ public class PasswordManagementCommandsTest {
 
     private String apply(Function<String,String> func, String key){
         return func.apply(key);
+    }
+
+
+    @Test
+    public int[] boolean_chain_test(int[] array, int targetSum) {
+        List<Integer> response = new ArrayList<Integer>();
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                if ((array[i] + array[j]) == targetSum) {
+                    if (array[i] != array[j]) {
+                        response.add(array[i]);
+                        response.add(array[j]);
+                    }
+
+                }
+            }
+        }
+        if (response.size() > 0) {
+            int[] solution = {response.get(0), response.get(1)};
+            return solution;
+        } else {
+            return new int[0];
+        }
+
+
     }
 
 
